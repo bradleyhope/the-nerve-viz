@@ -27,9 +27,9 @@ WORKDIR /app
 RUN npm install -g pnpm
 
 # Copy built files from builder
-COPY --from=builder /app/dist/public ./dist/public
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package.json ./
+COPY server-static.js .
 
 # Install only production dependencies
 RUN pnpm install --prod --frozen-lockfile
@@ -37,5 +37,5 @@ RUN pnpm install --prod --frozen-lockfile
 # Expose port
 EXPOSE 3000
 
-# Start the preview server
-CMD ["pnpm", "run", "preview"]
+# Start the server
+CMD ["node", "server-static.js"]
