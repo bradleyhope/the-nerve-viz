@@ -1,0 +1,7 @@
+services:
+  - type: static_site
+    name: the-nerve-viz
+    buildCommand: pnpm install && pnpm run build
+    staticPublishPath: ./dist/public
+    autoDeploy: true
+    branch: main
